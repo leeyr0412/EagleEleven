@@ -17,6 +17,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/green_500"
+        android:text="@string/loading4"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="15sp"
         android:text="@string/loading1"/>
     <TextView
