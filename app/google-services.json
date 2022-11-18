@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "480389957560",
+    "project_id": "eagle-eleven",
+    "storage_bucket": "eagle-eleven.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480389957560:android:58c97c824455850190314d",
+        "android_client_info": {
+          "package_name": "univ.yonsei.eagle_eleven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480389957560-89bhl48rs86kdn1iqp704afu7nol1q2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "univ.yonsei.eagle_eleven",
+            "certificate_hash": "53b84bd9e8f9f2e265da49301e4ab6bd6077df05"
+          }
+        },
+        {
+          "client_id": "480389957560-f81v941lesmq7t2h2no7a861msvh4qkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV3JQwQ2mJVagtCWQ5Gw97UZyuCOz4mnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480389957560-f81v941lesmq7t2h2no7a861msvh4qkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

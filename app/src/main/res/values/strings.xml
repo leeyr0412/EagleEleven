@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Eagle_Eleven</string>
+    <string name="app_nameKor">독수리 일레븐</string>
+    <string name="loading1">2022 모바일프로그래밍</string>
+    <string name="loading2">반오십</string>
+    <string name="loading3">박정빈 전용준 이예리</string>
+    <string name="loading4">독수리 일레븐</string>
+
+    <!--    로그인페이지-->
+    <string name="btnLogin">Login</string>
+
+
+    <!--    메인페이지-->
+    <string name="btnTeamMake">팀 생성</string>
+    <string name="btnTeamLoad">내 팀 목록</string>
+</resources>
