@@ -7,7 +7,8 @@
     <string name="loading4">독수리 일레븐</string>
 
     <!--    로그인페이지-->
-    <string name="btnLogin">Login</string>
+    <string name="btnLogin">로그인</string>
+    <string name="btnRegister">회원가입</string>
 
 
     <!--    메인페이지-->
