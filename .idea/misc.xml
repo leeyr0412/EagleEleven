@@ -8,7 +8,8 @@
         <entry key="app/src/main/res/layout/activity_loading.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_make_team.xml" value="0.13697916666666668" />
+        <entry key="app/src/main/res/layout/activity_make_team.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/activity_team_make.xml" value="0.23806365966796877" />
       </map>
     </option>

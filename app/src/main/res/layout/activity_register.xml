@@ -5,17 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity"
+>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="로그인"
+        android:text="회원가입"
         android:textSize="40sp"
         android:textStyle="bold"
         />
     <EditText
-        android:id="@+id/edtLogin"
+        android:id="@+id/joinName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="text"
+        />
+    <EditText
+        android:id="@+id/joinId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -23,9 +33,8 @@
         android:hint="아이디"
         android:inputType="text"
         />
-
     <EditText
-        android:id="@+id/edtPwd"
+        android:id="@+id/joinPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -33,21 +42,29 @@
         android:hint="비밀번호"
         android:inputType="textPassword"
         />
-
-    <Button
-        android:id="@+id/btnLogin"
+    <EditText
+        android:id="@+id/joinPwdCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnLogin"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:id="@+id/btnJoin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가입"
+        android:layout_marginBottom="10dp"
+        />
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
         android:layout_marginBottom="10dp"
         />
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnRegister"
-        android:layout_marginTop="10dp"
-        />
 
 </LinearLayout>
