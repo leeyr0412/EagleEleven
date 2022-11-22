@@ -17,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
 //        팀생성, 팀 불러오기
 //        팀 생성
-        //무야호 ddddddd dafdafadfad asdfadfadfafd
+        //무야호
         Button btnTeamMake = findViewById(R.id.btnTeamMake);
         btnTeamMake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"팀 생성",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
