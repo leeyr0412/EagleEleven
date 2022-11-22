@@ -13,5 +13,12 @@
 
     <!--    메인페이지-->
     <string name="btnTeamMake">팀 생성</string>
-    <string name="btnTeamLoad">내 팀 목록</string>
+    <string name="btnTeamLoad">기존 팀 불러오기</string>
+
+<!--    팀생성페이지-->
+    <string name="tvTeamName">팀 이름</string>
+    <string name="tvTeamNum">인원 수</string>
+    <string name="tvGameDate">게임 날짜</string>
+<!--    <string name="tvTeamName">팀 이름</string>-->
+<!--    팀 불러오기-->
 </resources>

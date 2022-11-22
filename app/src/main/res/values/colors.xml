@@ -10,4 +10,7 @@
 
     <color name="green_200">#79A367</color>
     <color name="green_500">#429845</color>
+
+
+    <color name="loadingBackground">#bdfb7b</color>
 </resources>
