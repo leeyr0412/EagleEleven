@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        팀생성, 팀 불러오기
-//        팀 생성
+//        팀 생성 예리 머지 테스트
         Button btnTeamMake = findViewById(R.id.btnTeamMake);
         btnTeamMake.setOnClickListener(new View.OnClickListener() {
             @Override
