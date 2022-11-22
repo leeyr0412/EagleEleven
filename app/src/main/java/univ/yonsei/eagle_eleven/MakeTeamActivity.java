@@ -36,7 +36,7 @@ public class MakeTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make_team);
         Button btnRegister = findViewById(R.id.btnRegister);
         Button btnCancel = findViewById(R.id.btnCancel);
-
+        // hihi hi hi hi hi
         EditText edtTeamName = findViewById(R.id.editTeamName);
         EditText edtCaptainName = findViewById(R.id.editCaptainName);
         TextView tvTeamNumber = findViewById(R.id.tvTeamMember);
