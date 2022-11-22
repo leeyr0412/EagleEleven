@@ -77,7 +77,6 @@ public class MakeTeamActivity extends AppCompatActivity {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM")
                         .child(teamName.toString()).child("CaptainName");
 
-
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
