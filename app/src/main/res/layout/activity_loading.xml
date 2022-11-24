@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".LoadingActivity">
+    <!--어플 실행 시 로딩화면-->
 
     <ImageView
         android:id="@+id/ImgLoading"
