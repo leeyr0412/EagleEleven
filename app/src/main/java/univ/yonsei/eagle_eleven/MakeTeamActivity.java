@@ -24,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,10 @@ public class MakeTeamActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
+    private FirebaseAuth mAuth;     //회원정보 관련
+    FirebaseUser currentUser;
+    String uid;
+
     private int teamNum = 11;   //팀 인원수 변수
     private static String TeamName; //팀 이름
 
@@ -48,33 +54,18 @@ public class MakeTeamActivity extends AppCompatActivity {
     ImageView ivEmblem;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     StorageReference emblemRef;
-
     private ProgressBar progressBar;
-//    private final DatabaseReference imgBDRef = FirebaseDatabase.getInstance().getReference("TEAM");
-//    private final StorageReference imgSRef = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
-//
     private UploadTask uploadTask;
 
-
-
-
-
-//    private String pathUri;
-//    public static final int IMAGE_REQUEST = 1;
-//    StorageReference storageReference;
-//    StorageTask uploadTask;
     EditText edtTeamName;
-
-
-//    private FirebaseStorage storage = FirebaseStorage.getInstance();        // 스토리지 접근 위한 인스턴스
-//    ;
-//    private StorageReference pathReference = storageReference.child("emblem");   //사진저장주소
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_team);
+
+        mAuth = FirebaseAuth.getInstance();     //회원정보 관련 인스턴스 초기화
 
         Button btnRegister = findViewById(R.id.btnRegister);
         Button btnCancel = findViewById(R.id.btnCancel);
@@ -82,11 +73,6 @@ public class MakeTeamActivity extends AppCompatActivity {
         EditText edtCaptainName = findViewById(R.id.editCaptainName);
         TextView tvTeamNumber = findViewById(R.id.tvTeamMember);
         ivEmblem = findViewById(R.id.imgTeamEmblem);
-
-//        StorageReference imgReference = storageReference.child("emblem/")
-//        pathReference =
-
-
 
 //        팀 엠블럼 부붑*******************************************************************************************************
 //        프로그래스바 숨겨
@@ -103,28 +89,6 @@ public class MakeTeamActivity extends AppCompatActivity {
                 activityResult.launch(galleryIntent);
             }
         });
-
-
-
-
-
-
-//        tvTeamNumber.setText(teamNum+"");
-
-//        엠블럼 이미지 변경
-//        storage = FirebaseStorage.getInstance();
-//        이미지 클릭 시
-//        storageReference = FirebaseStorage.getInstance().getReference();
-//        ivEmblem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent galleryIntent = new Intent();
-//                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-//                galleryIntent.setType("image/");
-//                activityResult.launch(galleryIntent);     //이미지 선택
-//            }
-//        });
-//      팀 엠블럼 조작 끝----------------------------------------------------
 
 //        인원수 조작
         findViewById(R.id.btnTeamSub).setOnClickListener(new View.OnClickListener() {
@@ -150,9 +114,7 @@ public class MakeTeamActivity extends AppCompatActivity {
                 Editable teamName = edtTeamName.getText();
                 TeamName = teamName.toString();
                 Editable CaptainName = edtCaptainName.getText();
-                //Editable TeamNumber = edtTeamNumber.getText();
-//                이미지 업로드
-//                uploadToFirebase(imageUri);
+
 
 //                데이터 넣기 전 정리
                 HashMap<String, Object> hashMap = new HashMap<>();
@@ -165,11 +127,11 @@ public class MakeTeamActivity extends AppCompatActivity {
 //                hashMap.put("EmblemUri", imageUri.);
 
                 //데이터 넣기
-                databaseReference.child("TEAM").child(teamName.toString()).setValue(hashMap);
+                databaseReference.child("TEAM").child(uid).child(TeamName).setValue(hashMap);
 
 //                데이터 불러오기 테스트
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM")
-                        .child(teamName.toString()).child("CaptainName");
+                        .child(uid).child(TeamName).child("CaptainName");
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -207,7 +169,19 @@ public class MakeTeamActivity extends AppCompatActivity {
         });
     }
 
-////    사진 가져오기
+    @Override
+    protected void onStart() {
+        super.onStart();
+        currentUser = mAuth.getCurrentUser();
+        uid = currentUser.getUid();
+        if(currentUser == null){
+//            로그인 안되어있음. 우선 로그인 페이지로 이동
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    ////    사진 가져오기
     ActivityResultLauncher<Intent> activityResult = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -232,7 +206,7 @@ public class MakeTeamActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(TeamName);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("EmblemUrl",""+uri.toString());
 
