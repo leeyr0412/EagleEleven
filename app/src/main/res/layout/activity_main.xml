@@ -42,10 +42,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
+        android:orientation="vertical"
         android:background="#ccccdd">
-        <TextView
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:layout_height="match_parent"></ListView>
+
+        <Button
+            android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="매칭 공고 리스트"/>
+            android:text="매치 생성"></Button>
     </LinearLayout>
 </LinearLayout>
