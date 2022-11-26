@@ -14,6 +14,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+
+
+import android.widget.Toast;
+
+
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout baseLayout; //메인 xml의 부모 레이아웃 id
@@ -72,19 +78,16 @@ public class MainActivity extends AppCompatActivity {
         btnTeamMake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"팀 생성",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this,MakeTeamActivity.class);
                 startActivity(intent);
             }
         });
 
-
         Button btnTeamLoad = findViewById(R.id.btnTeamLoad);
-
-        btnTeamMake.setOnClickListener(new View.OnClickListener() {
+        btnTeamLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,MakeTeamActivity.class);
+                Intent intent = new Intent(MainActivity.this,LoadTeamActivity.class);
                 startActivity(intent);
             }
         });

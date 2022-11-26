@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.11296296296296296" />
         <entry key="app/src/main/res/drawable/ic_twotone_add_circle_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_twotone_remove_circle_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_custom_dialog.xml" value="0.2463768115942029" />
@@ -12,7 +13,12 @@
         <entry key="app/src/main/res/layout/activity_make_team.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_team_make.xml" value="0.23806365966796877" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/dlg_make_team_result.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/matchingpage.xml" value="0.25" />
+=======
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.25" />
+>>>>>>> 270f290bd95148f6d093cb52bf33da0f1c7e99cb
       </map>
     </option>
   </component>
