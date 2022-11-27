@@ -24,18 +24,42 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout baseLayout; //메인 xml의 부모 레이아웃 id
-
+    // info class 만들기
+    public class info{
+        public String captainName;
+        public String EmblemUrl;
+        public int gameNum;
+        public int teamNumber;
+        public info(){
+            //default
+        }
+        public info(String captainName,String EmblemUrl,int gameNum,int teamNumber){
+            this.captainName = captainName;
+            this.EmblemUrl = EmblemUrl;
+            this.gameNum = gameNum;
+            this.teamNumber = teamNumber;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /////////////////// list View /////////////////////
+        /////////////////// list View 시작/////////////////////
         final String[] matches = {"2022년 11월 12일 17시","2022년 11월 13일 13시","2022년 11월 9일 19시","2022년 11월 3일 17시",
                                 "2022년 11월 13일 11시","2022년 11월 29일 9시","2022년 11월 28일 11시","2022년 11월 30일 19시"};
         final ArrayList<String> items = new ArrayList<>();
@@ -72,8 +96,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button btnAdd = findViewById(R.id.btnAdd);
+        /////////////////// list View 끝 /////////////////////
 
-        /////////////////// list View /////////////////////
+        ////////////////// 순위 시작 ////////////////////////
+        TextView txtFirst = findViewById(R.id.txtFirst);
+        TextView txtSecond = findViewById(R.id.txtSecond);
+        TextView txtThird = findViewById(R.id.txtThird);
+        TextView txtFourth = findViewById(R.id.txtFourth);
+        TextView txtFifth = findViewById(R.id.txtFifth);
+        ArrayList<String> tName = new ArrayList<>();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("TEAM");
+        Query myTopTeam = mDatabase.orderByChild("GameNum");
+        myTopTeam.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    android.util.Log.i("snapshot: ",dataSnapshot.getValue().toString());
+                    //tName.add(dataSnapshot.getValue().toString());
+                    tName.add(dataSnapshot.getValue().toString());
+                    //android.util.Log.i("tName: ",tName.toString());
+                }
+                txtFirst.setText(tName.get(0));
+                txtSecond.setText(tName.get(1));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        ////////////////// 순위 끝 ////////////////////////
         Button btnTeamMake = findViewById(R.id.btnTeamMake);
         btnTeamMake.setOnClickListener(new View.OnClickListener() {
             @Override
