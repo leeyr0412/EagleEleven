@@ -25,11 +25,87 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#ddcccc"
+        android:orientation="vertical"
         android:layout_weight="3">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="순위"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="1등"
+                    android:textSize="20sp"></TextView>
+                <TextView
+                    android:id="@+id/txtFirst"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="20sp"></TextView>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="2등"
+                    android:textSize="20sp"></TextView>
+                <TextView
+                    android:id="@+id/txtSecond"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="20sp"></TextView>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="3등"
+                    android:textSize="20sp"></TextView>
+                <TextView
+                    android:id="@+id/txtThird"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="20sp"></TextView>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="4등"
+                    android:textSize="20sp"></TextView>
+                <TextView
+                    android:id="@+id/txtFourth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="20sp"></TextView>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="5등"
+                    android:textSize="20sp"></TextView>
+                <TextView
+                    android:id="@+id/txtFifth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="20sp"></TextView>
+            </TableRow>
+        </TableLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
