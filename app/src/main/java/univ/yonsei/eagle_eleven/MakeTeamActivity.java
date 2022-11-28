@@ -118,6 +118,7 @@ public class MakeTeamActivity extends AppCompatActivity {
 
 //                데이터 넣기 전 정리
                 HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("TeamName", ""+TeamName);
                 hashMap.put("CaptainName", ""+CaptainName);
                 hashMap.put("TeamNumber", teamNum);
                 hashMap.put("GameNum", 0);
@@ -148,6 +149,10 @@ public class MakeTeamActivity extends AppCompatActivity {
                     uploadToFirebase(imageUri);
                 }else{
 //                   기본이미지
+                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
+                    HashMap<String, Object> hashMapi = new HashMap<>();
+                    hashMapi.put("EmblemUrl","https://firebasestorage.googleapis.com/v0/b/eagle-eleven.appspot.com/o/emblem%2Fdefault.png?alt=media&token=f0ce1b86-1d4b-4c35-82f1-cb3413458759");
+                    reference1.updateChildren(hashMapi);
                 }
 
 //                결과보여주기(미완)
@@ -206,12 +211,24 @@ public class MakeTeamActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
-                HashMap<String, Object> hashMap = new HashMap<>();
-                hashMap.put("EmblemUrl",""+uri.toString());
+                emblemRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("EmblemUrl",""+uri.toString());
+                        reference.updateChildren(hashMap);
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
 
-                reference.updateChildren(hashMap);
-                progressBar.setVisibility(View.INVISIBLE);
+//
+//                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
+//                HashMap<String, Object> hashMap = new HashMap<>();
+//                hashMap.put("EmblemUrl",""+uri.toString());
+//
+//                reference.updateChildren(hashMap);
+//                progressBar.setVisibility(View.INVISIBLE);
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
