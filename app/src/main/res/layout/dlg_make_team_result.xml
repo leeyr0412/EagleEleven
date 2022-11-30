@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/imgTeamEmblem"
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
                 android:text="팀 이름: "
                 android:textSize="15sp" />
             <TextView
-                android:id="@+id/editTeamName"
+                android:id="@+id/tvTeamName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -48,7 +48,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/editCaptainName"
+                android:id="@+id/tvCaptainName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"

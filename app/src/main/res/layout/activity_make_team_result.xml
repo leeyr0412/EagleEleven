@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--팀 생성 결과 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#eeeeee"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    tools:context=".MakeTeamResultActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/green_200"
+            android:textColor="#eeeeee"
+            android:text="팀이 생성되었습니다!"
+            android:textSize="25sp"/>
+        <ImageView
+
+            android:id="@+id/imgTeamEmblem"
+            android:layout_width="270dp"
+            android:layout_height="280dp"
+            android:adjustViewBounds="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/loading"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:text="팀 이름: "
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tvTeamName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:textSize="15sp"
+                    android:text="독수리일레븐"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:text="주장 성함:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvCaptainName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:textSize="15sp"
+                    android:text="주장임" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    android:text="팀 인원: "
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvTeamMember"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="11"
+                    android:textSize="15sp"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <Button
+                    android:id="@+id/btnOK"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="확인"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@color/green_200"
+                    android:textColor="#eeeeee"/>
+                <Button
+                    android:id="@+id/btnGoMatching"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="매칭 등록"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@color/green_200"
+                    android:textColor="#eeeeee"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
