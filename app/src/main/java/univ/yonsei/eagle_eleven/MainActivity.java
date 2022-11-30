@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     //android.util.Log.i("tName: ",tName.toString());
                 }
                 txtFirst.setText(tName.get(0));
-                txtSecond.setText(tName.get(1));
+                //txtSecond.setText(tName.get(1));
             }
 
             @Override

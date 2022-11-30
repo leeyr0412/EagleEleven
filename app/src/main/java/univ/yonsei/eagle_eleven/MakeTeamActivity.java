@@ -1,10 +1,12 @@
 package univ.yonsei.eagle_eleven;
 
+import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -19,27 +21,29 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.HashMap;
 
 
 public class MakeTeamActivity extends AppCompatActivity {
+    private static String TAG = "makeTeam";
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -49,6 +53,8 @@ public class MakeTeamActivity extends AppCompatActivity {
 
     private int teamNum = 11;   //팀 인원수 변수
     private static String TeamName; //팀 이름
+    private static String captainName;
+
 
 //    이미지용+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ImageView ivEmblem;
@@ -114,6 +120,7 @@ public class MakeTeamActivity extends AppCompatActivity {
                 Editable teamName = edtTeamName.getText();
                 TeamName = teamName.toString();
                 Editable CaptainName = edtCaptainName.getText();
+                captainName = CaptainName.toString();
 
 
 //                데이터 넣기 전 정리
@@ -131,19 +138,19 @@ public class MakeTeamActivity extends AppCompatActivity {
                 databaseReference.child("TEAM").child(uid).child(TeamName).setValue(hashMap);
 
 //                데이터 불러오기 테스트
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM")
-                        .child(uid).child(TeamName).child("CaptainName");
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Toast.makeText(getApplicationContext(),"주장이름 : "+snapshot.getValue(String.class),Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+//                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM")
+//                        .child(uid).child(TeamName).child("CaptainName");
+//                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        Toast.makeText(getApplicationContext(),"주장이름 : "+snapshot.getValue(String.class),Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
 
                 if(imageUri != null){   //이미지 선택됨
                     uploadToFirebase(imageUri);
@@ -153,15 +160,11 @@ public class MakeTeamActivity extends AppCompatActivity {
                     HashMap<String, Object> hashMapi = new HashMap<>();
                     hashMapi.put("EmblemUrl","https://firebasestorage.googleapis.com/v0/b/eagle-eleven.appspot.com/o/emblem%2Fdefault.png?alt=media&token=f0ce1b86-1d4b-4c35-82f1-cb3413458759");
                     reference1.updateChildren(hashMapi);
+
+                    showResultDlg();
                 }
 
-//                결과보여주기(미완)
-                View makeTeamResult = View.inflate(MakeTeamActivity.this,R.layout.dlg_make_team_result,null);
-                AlertDialog.Builder dlg = new AlertDialog.Builder(MakeTeamActivity.this);
-                dlg.setTitle("팀 생성 결과");
-                dlg.setView(makeTeamResult);
-                dlg.setNegativeButton("닫기",null);
-                dlg.show();
+
 
             }
         });
@@ -219,16 +222,10 @@ public class MakeTeamActivity extends AppCompatActivity {
                         hashMap.put("EmblemUrl",""+uri.toString());
                         reference.updateChildren(hashMap);
                         progressBar.setVisibility(View.INVISIBLE);
+
+                        showResultDlg();
                     }
                 });
-
-//
-//                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(uid).child(TeamName);
-//                HashMap<String, Object> hashMap = new HashMap<>();
-//                hashMap.put("EmblemUrl",""+uri.toString());
-//
-//                reference.updateChildren(hashMap);
-//                progressBar.setVisibility(View.INVISIBLE);
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -237,63 +234,6 @@ public class MakeTeamActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
             }
         });
-
-
-//        StorageReference fileRef = imgSRef.child("emblem/"+TeamName+"."+getFileExtension(uri));
-
-//        *@*@*@*@*@*@**@*@*@*@*@
-//        uploadTask = fileRef.putFile(uri);
-//        uploadTask.continueWithTask(new Continuation() {
-//            @Override
-//            public Object then(@NonNull Task task) throws Exception {
-//                if(!task.isSuccessful()){
-//                    throw task.getException();
-//                }
-//                return fileRef.getDownloadUrl();
-//            }
-//        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                if(task.isSuccessful()){
-//                    Uri  downloadUri = task.getResult();
-//                    String myUri = downloadUri.toString();
-//
-//                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("TEAM").child(TeamName);
-//                    HashMap<String, Object> hashMap = new HashMap<>();
-//                    hashMap.put("emblemurl",""+myUri);
-//
-//                    reference.updateChildren(hashMap);
-//                }
-//            }
-//        });
-
-//        ************!!!!!!!!!!!!!!!!!!!!!!!!!!
-//        fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        Emblem emblem = new Emblem(uri.toString());
-//                        String emblemId = imgBDRef.push().getKey(); //키로 아이디 생성
-//                        imgBDRef.child(emblemId).setValue(emblem);
-//                        progressBar.setVisibility(View.INVISIBLE);
-//                        ivEmblem.setImageResource(R.drawable.loading);
-//                    }
-//                });
-//            }
-//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                progressBar.setVisibility(View.VISIBLE);
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                progressBar.setVisibility(View.INVISIBLE);
-//            }
-//        });
-//        ************!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     //    파일형식 가져오기
@@ -304,6 +244,32 @@ public class MakeTeamActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(uri));
     }
 
+    private void showResultDlg() {
+        Toast.makeText(getApplicationContext(),"토스트 실행됨",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, MakeTeamResultActivity.class);
+        intent.putExtra("Captain",captainName);
+        intent.putExtra("TeamName",TeamName);
+        intent.putExtra("teamNum",teamNum);
+        intent.putExtra("imgUri",imageUri);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            if(resultCode==RESULT_CANCELED){
+                finish();
+            }
+            else if(resultCode==RESULT_OK){
+                Intent go = getIntent();
+                go.putExtra("TeamName",TeamName);
+                startActivity(go);
+                finish();
+            }
+        }
+    }
 }
 
 
