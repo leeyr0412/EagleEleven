@@ -130,7 +130,11 @@ public class MakeTeamActivity extends AppCompatActivity {
                 hashMap.put("TeamNumber", teamNum);
                 hashMap.put("GameNum", 0);
 
-
+//                순위테이블
+                HashMap<String, Object> hashMap2 = new HashMap<>();
+                hashMap2.put("TeamName", ""+TeamName);
+                hashMap2.put("GameNum", 0);
+                databaseReference.child("GAMES").child(TeamName).setValue(hashMap2);
 
 //                hashMap.put("EmblemUri", imageUri.);
 
