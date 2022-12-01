@@ -99,44 +99,36 @@ public class MainActivity extends AppCompatActivity {
         TextView txtFifth = findViewById(R.id.txtFifth);
         ArrayList<String> tName = new ArrayList<>();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("TEAM");
-        Query myTopTeam = mDatabase.orderByChild("GameNum").limitToFirst(5);
+        //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("TEAM");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("GAMES");
+        //Query myTopTeam = mDatabase.orderByChild("GameNum").limitToFirst(5);
+
+        HashMap<String,Integer> map = new HashMap<>();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    //android.util.Log.i("snapshot: ",dataSnapshot.getValue().toString());
-                    String[] array = dataSnapshot.getValue().toString().split(Pattern.quote("}, "));
-                    HashMap<String,Integer> map = new HashMap<>();
-                    for(int i=0;i<array.length;i++){
-                        //+8 , +9 인 이유는 string으로 받아와서 substring하려고 (게임횟수가 1자리수인경우)
-                        map.put(array[i].substring(0,array[i].indexOf("=")), Integer.valueOf(array[i].substring(array[i].lastIndexOf("GameNum=")+8,array[i].lastIndexOf("GameNum=")+9)));
-                    }
-                    List<Map.Entry<String, Integer>> list_entries = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
-                    Collections.sort(list_entries, new Comparator<Map.Entry<String, Integer>>() {
-                        // compare로 값을 비교
-                        public int compare(Map.Entry<String, Integer> obj1, Map.Entry<String, Integer> obj2)
-                        {
-                            // 내림 차순으로 정렬
-                            return obj2.getValue().compareTo(obj1.getValue());
-                        }
-                    });
-                    for(Map.Entry<String, Integer> entry : list_entries) {
-                        System.out.println(entry.getKey() + " : " + entry.getValue());
-                    }
-                    txtFirst.setText(list_entries.get(0).getKey());
-                    txtSecond.setText(list_entries.get(1).getKey());
-                    txtThird.setText(list_entries.get(2).getKey());
-                    txtFourth.setText(list_entries.get(3).getKey());
-                    txtFifth.setText(list_entries.get(4).getKey());
-                    //tName.add(dataSnapshot.getValue().toString().substring(1,dataSnapshot.getValue().toString().indexOf("=")));
+                    String arrayValue = dataSnapshot.getValue().toString();
+                    map.put(arrayValue.substring(arrayValue.lastIndexOf("TeamName=")+9,arrayValue.indexOf("}")), Integer.valueOf(arrayValue.substring(arrayValue.lastIndexOf("GameNum=")+8,arrayValue.indexOf(","))));
+                    //android.util.Log.i("map2: ", String.valueOf(map));
                 }
-
-                //tName.add(dataSnapshot.getValue().toString());
-                //txtFirst.setText(tName.get(0));
-                //txtSecond.setText(tName.get(1));
+                //android.util.Log.i("map1", String.valueOf(map));
+                List<Map.Entry<String, Integer>> list_entries = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
+                Collections.sort(list_entries, new Comparator<Map.Entry<String, Integer>>() {
+                    // compare로 값을 비교
+                    public int compare(Map.Entry<String, Integer> obj1, Map.Entry<String, Integer> obj2)
+                    {
+                        // 내림 차순으로 정렬
+                        return obj2.getValue().compareTo(obj1.getValue());
+                    }
+                });
+                txtFirst.setText(list_entries.get(0).getKey());
+                txtSecond.setText(list_entries.get(1).getKey());
+                txtThird.setText(list_entries.get(2).getKey());
+                txtFourth.setText(list_entries.get(3).getKey());
+                txtFifth.setText(list_entries.get(4).getKey());
             }
 
             @Override
