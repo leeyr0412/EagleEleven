@@ -19,6 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 
+import android.widget.CalendarView;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -34,6 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.type.DateTime;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -48,6 +53,8 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayout baseLayout; //메인 xml의 부모 레이아웃 id
+    EditText dlgTime,dlgDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +66,39 @@ public class MainActivity extends AppCompatActivity {
         for(String match: matches) {
             items.add(match);
         }
+        /////////////////// 매치 생성 ///////////////////////
+        Button btnAdd = findViewById(R.id.btnAdd);
+        View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
+        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+        dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
+        dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
+
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+                dlg.setTitle("매칭 생성하기");
+                dlg.setView(makeMatchingPage);
+
+                dlg.setPositiveButton("등록하기", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String date = dlgDate.getText().toString();
+                        String Time = dlgTime.getText().toString();
+
+                        android.util.Log.i("date: ",date + " "+Time);
+                        String[] TotalDate = date.split("/");
+                        items.add(TotalDate[0] + "년" +TotalDate[1]+ "월" + TotalDate[2] +"일 " + Time + "시");
+                    }
+                });
+                dlg.setNegativeButton("취소",null);
+
+                dlg.show();
+            }
+        });
+
+        /////////////////매치 생성 끝 ////////////////////////
         ListView list = findViewById(R.id.listView1);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,match);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
@@ -72,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView txtDate = matchingPage.findViewById(R.id.txtDate);
                 TextView txtTeamNumber = matchingPage.findViewById(R.id.txtTeamNumber);
                 Button btnReturn = matchingPage.findViewById(R.id.btnReturn);
+
                 btnReturn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -80,15 +121,16 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"매칭이 성사 됐습니다.",Toast.LENGTH_SHORT).show();
                     }
                 });
+
                 dlg.setTitle("매치 상세 내용");
                 String content = (String) parent.getAdapter().getItem(position); //리스트 클릭시 해당 내용 불러옴
                 txtDate.setText(content); // 리스트 내용 dlg 텍스트 뷰에 넣음
                 dlg.setView(matchingPage);
                 dlg.setNegativeButton("닫기",null);
+
                 dlg.show();
             }
         });
-        Button btnAdd = findViewById(R.id.btnAdd);
         /////////////////// list View 끝 /////////////////////
 
         ////////////////// 순위 시작 ////////////////////////
