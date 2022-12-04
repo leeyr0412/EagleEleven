@@ -12,13 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="right">
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Eagle Eleven"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            />
+
+        <ImageButton
+            android:id="@+id/btnNotification"
+            android:layout_width="52dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="90dp"
+            android:src="@drawable/bell_off"
+            android:scaleType="fitXY"
+            />
+
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="로그아웃"
+            android:layout_marginLeft="5dp"
             />
+
     </LinearLayout>
 
     <LinearLayout
