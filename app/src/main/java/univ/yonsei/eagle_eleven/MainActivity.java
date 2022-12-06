@@ -161,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
                 dlg.setTitle("매치 상세 내용");
                 String content = (String) parent.getAdapter().getItem(position); //리스트 클릭시 해당 내용 불러옴
+                Intent intent = new Intent(getApplicationContext(),MatchingTeamSelectActivity.class);
+                intent.putExtra("ListName",content);
+                startActivity(intent);
+
                 txtDate.setText(content); // 리스트 내용 dlg 텍스트 뷰에 넣음
                 dlg.setView(matchingPage);
                 dlg.setNegativeButton("닫기",null);
