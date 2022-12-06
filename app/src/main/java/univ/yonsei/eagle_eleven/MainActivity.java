@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Eagle Eleven");
         /////////////////// list View 시작/////////////////////
         ListView list = findViewById(R.id.listView1);
         final String[] matches = {};
@@ -234,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //로그아웃 기능
-        Button btnLogout = findViewById(R.id.btnLogout);
+        ImageButton btnLogout = findViewById(R.id.btnLogout);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,7 +304,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-/*  //상단 메뉴바 만들어서 로그아웃 하위메뉴로 넣으려고 했는데 안돼서 일단 보류
+    /*
+  //상단 메뉴바 만들어서 로그아웃 하위메뉴로 넣으려고 했는데 안돼서 일단 보류
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -324,5 +326,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
- */
+     */
+
+
 }
