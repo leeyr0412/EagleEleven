@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                     //map.put(arrayValue.substring(arrayValue.lastIndexOf("TeamName=")+9,arrayValue.indexOf("}")), Integer.valueOf(arrayValue.substring(arrayValue.lastIndexOf("GameNum=")+8,arrayValue.indexOf(","))));
                     //android.util.Log.i("map2: ", String.valueOf(map));
                 }
-
                 android.util.Log.i("Items: ", String.valueOf(items));
                 list.setAdapter(adapter);
             }
@@ -261,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //팝업창 시작//
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
@@ -290,14 +288,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
  */
-
         ImageButton btnNotification = findViewById(R.id.btnNotification);
         btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 dlg.setTitle("매칭 알림");
-                dlg.setMessage("gamelist:");
+                AlertDialog.Builder builder = dlg.setMessage(items.get(0));
                 dlg.setPositiveButton("확인", null);
                 dlg.show();
             }
