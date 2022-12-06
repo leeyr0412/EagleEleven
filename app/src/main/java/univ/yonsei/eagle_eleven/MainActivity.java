@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -50,10 +52,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-
 public class MainActivity extends AppCompatActivity {
     LinearLayout baseLayout; //메인 xml의 부모 레이아웃 id
     EditText dlgTime,dlgDate;
+    TextView txtResult;
+    Popup popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,7 +227,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        baseLayout = findViewById(R.id.baseLayout);
+
+        //팝업창
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        layoutParams.dimAmount = 0.8f;
+        getWindow().setAttributes(layoutParams);
+
+        ImageButton btnNotification = findViewById(R.id.btnNotification);
+        btnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+                dlg.setTitle("매칭 알림");
+                dlg.setMessage("팀 이름: \n팀 인원: \n");
+                dlg.setPositiveButton("확인", null);
+                dlg.show();
+            }
+        });
+        //팝업창
+
     }
 
 /*  //상단 메뉴바 만들어서 로그아웃 하위메뉴로 넣으려고 했는데 안돼서 일단 보류

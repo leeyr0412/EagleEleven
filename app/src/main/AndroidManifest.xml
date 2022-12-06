@@ -15,8 +15,8 @@
         android:theme="@style/Theme.Eagle_Eleven">
         <activity
             android:name=".MakeTeamResultActivity"
-            android:theme="@style/teamMakeResultDlg"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/teamMakeResultDlg" />
         <activity
             android:name=".LoadTeamActivity"
             android:exported="false" />
