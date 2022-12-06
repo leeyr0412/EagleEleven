@@ -60,12 +60,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         /////////////////// list View 시작/////////////////////
-        final String[] matches = {"2022년 11월 12일 17시","2022년 11월 13일 13시","2022년 11월 9일 19시","2022년 11월 3일 17시",
-                "2022년 11월 13일 11시","2022년 11월 29일 9시","2022년 11월 28일 11시","2022년 11월 30일 19시"};
+        ListView list = findViewById(R.id.listView1);
+        final String[] matches = {};
         final ArrayList<String> items = new ArrayList<>();
-        for(String match: matches) {
-            items.add(match);
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,items);
+        DatabaseReference GameListDatabase = FirebaseDatabase.getInstance().getReference("GameList");
+        GameListDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String Data = dataSnapshot.getValue().toString();
+                    //android.util.Log.i("Data: ", Data);
+                    //android.util.Log.i("Data: ", String.valueOf(Data.lastIndexOf("Date=")+5));
+                    items.add(Data.substring(Data.indexOf("Date=")+5,Data.indexOf("}")));
+                    //map.put(arrayValue.substring(arrayValue.lastIndexOf("TeamName=")+9,arrayValue.indexOf("}")), Integer.valueOf(arrayValue.substring(arrayValue.lastIndexOf("GameNum=")+8,arrayValue.indexOf(","))));
+                    //android.util.Log.i("map2: ", String.valueOf(map));
+                }
+
+                android.util.Log.i("Items: ", String.valueOf(items));
+                list.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //final String[] matches = {"2022년 11월 12일 17시","2022년 11월 13일 13시","2022년 11월 9일 19시","2022년 11월 3일 17시",
+        //        "2022년 11월 13일 11시","2022년 11월 29일 9시","2022년 11월 28일 11시","2022년 11월 30일 19시"};
+        //final ArrayList<String> items = new ArrayList<>();
+        //for(String match: matches) {
+        //    items.add(match);
+        //}
+        ////////////////////list view 끝 ///////////////////
+
         /////////////////// 매치 생성 ///////////////////////
         Button btnAdd = findViewById(R.id.btnAdd);
         View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
@@ -99,10 +127,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /////////////////매치 생성 끝 ////////////////////////
-        ListView list = findViewById(R.id.listView1);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,match);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
-        list.setAdapter(adapter);
+        //ListView list = findViewById(R.id.listView1);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
+        //list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
