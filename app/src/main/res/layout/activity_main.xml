@@ -12,45 +12,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#ccddcc"
+        android:layout_weight="0.2"
         >
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:text="Eagle Eleven"
             android:textStyle="bold"
             android:textSize="30sp"
+            android:layout_gravity="center_vertical"
             />
 
         <ImageButton
             android:id="@+id/btnNotification"
-            android:layout_width="52dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="90dp"
-            android:src="@drawable/bell_off"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="130dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_baseline_history_24"
             android:scaleType="fitXY"
+            android:background="#ccddcc"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:text="로그아웃"
             android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_baseline_power_settings_new_24"
+            android:scaleType="fitXY"
+            android:background="#ccddcc"
             />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#679467"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#ddcccc"
+        android:background="#ffffff"
         android:orientation="vertical"
         android:layout_weight="3">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="순위"/>
+            android:gravity="center_horizontal"
+            android:text="Top 5"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#679467"
+            />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -60,13 +82,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="1등"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <TextView
                     android:id="@+id/txtFirst"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
             </TableRow>
             <TableRow>
                 <TextView
@@ -74,13 +96,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="2등"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <TextView
                     android:id="@+id/txtSecond"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
             </TableRow>
             <TableRow>
                 <TextView
@@ -88,13 +110,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="3등"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <TextView
                     android:id="@+id/txtThird"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
             </TableRow>
             <TableRow>
                 <TextView
@@ -102,13 +124,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="4등"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <TextView
                     android:id="@+id/txtFourth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
             </TableRow>
             <TableRow>
                 <TextView
@@ -116,24 +138,29 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="5등"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
                 <TextView
                     android:id="@+id/txtFifth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="18sp"></TextView>
             </TableRow>
         </TableLayout>
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#679467"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         android:orientation="vertical"
-        android:background="#ccccdd">
+        android:background="#ffffff">
 
         <ListView
             android:id="@+id/listView1"
@@ -145,8 +172,16 @@
             android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="매치 생성"></Button>
+            android:text="매치 생성"
+            />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#679467"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
