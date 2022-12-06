@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -255,11 +256,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //팝업창
+        //팝업창 시작//
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.8f;
         getWindow().setAttributes(layoutParams);
+/*
+        ArrayList<GameListData> gameList = new ArrayList<>();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("GameList");
+        Query myTopPostsQuery = mDatabase.orderByChild("GameHost").equalTo("대한민국");
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                gameList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    GameListData gameListData = dataSnapshot.getValue(GameListData.class);
+                    gameList.add(gameListData);
+                }
+                Log.w("MainActivity", "Gamelist = "+gameList.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("MainActivity", "onCancelled");
+            }
+        });
+
+ */
 
         ImageButton btnNotification = findViewById(R.id.btnNotification);
         btnNotification.setOnClickListener(new View.OnClickListener() {
@@ -267,12 +291,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 dlg.setTitle("매칭 알림");
-                dlg.setMessage("팀 이름: \n팀 인원: \n");
+                dlg.setMessage("gamelist:");
                 dlg.setPositiveButton("확인", null);
                 dlg.show();
             }
         });
-        //팝업창
+        //팝업창 끝//
 
     }
 
