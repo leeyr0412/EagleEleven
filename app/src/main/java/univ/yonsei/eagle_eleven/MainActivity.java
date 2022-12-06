@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -50,10 +53,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-
 public class MainActivity extends AppCompatActivity {
     LinearLayout baseLayout; //메인 xml의 부모 레이아웃 id
     EditText dlgTime,dlgDate;
+    TextView txtResult;
+    Popup popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                     //map.put(arrayValue.substring(arrayValue.lastIndexOf("TeamName=")+9,arrayValue.indexOf("}")), Integer.valueOf(arrayValue.substring(arrayValue.lastIndexOf("GameNum=")+8,arrayValue.indexOf(","))));
                     //android.util.Log.i("map2: ", String.valueOf(map));
                 }
-
                 android.util.Log.i("Items: ", String.valueOf(items));
                 list.setAdapter(adapter);
             }
@@ -257,7 +260,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        baseLayout = findViewById(R.id.baseLayout);
+        //팝업창 시작//
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        layoutParams.dimAmount = 0.8f;
+        getWindow().setAttributes(layoutParams);
+/*
+        ArrayList<GameListData> gameList = new ArrayList<>();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("GameList");
+        Query myTopPostsQuery = mDatabase.orderByChild("GameHost").equalTo("대한민국");
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                gameList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    GameListData gameListData = dataSnapshot.getValue(GameListData.class);
+                    gameList.add(gameListData);
+                }
+                Log.w("MainActivity", "Gamelist = "+gameList.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("MainActivity", "onCancelled");
+            }
+        });
+
+ */
+        ImageButton btnNotification = findViewById(R.id.btnNotification);
+        btnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+                dlg.setTitle("매칭 알림");
+                AlertDialog.Builder builder = dlg.setMessage(items.get(0));
+                dlg.setPositiveButton("확인", null);
+                dlg.show();
+            }
+        });
+        //팝업창 끝//
+
     }
 
 /*  //상단 메뉴바 만들어서 로그아웃 하위메뉴로 넣으려고 했는데 안돼서 일단 보류
