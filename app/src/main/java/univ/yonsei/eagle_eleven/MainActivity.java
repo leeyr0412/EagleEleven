@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> tName = new ArrayList<>();
 
         //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("TEAM");
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("GAMES");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Ranking");
         //Query myTopTeam = mDatabase.orderByChild("GameNum").limitToFirst(5);
 
         HashMap<String,Integer> map = new HashMap<>();

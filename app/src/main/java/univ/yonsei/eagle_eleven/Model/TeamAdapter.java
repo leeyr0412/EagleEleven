@@ -16,9 +16,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import univ.yonsei.eagle_eleven.LoginActivity;
+import univ.yonsei.eagle_eleven.MakingGameActivity;
 import univ.yonsei.eagle_eleven.R;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
@@ -40,24 +42,36 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Team team = mTeams.get(position);
         holder.btnTeamSelect.setVisibility(View.VISIBLE);
-        holder.teamname.setText(team.getTeamName());
+        String TeamName = team.getTeamName();
+        holder.teamname.setText(TeamName);
         holder.txtTeamCaptain.setText("주장 : "+team.getCaptainName());
         holder.txtGameNum.setText("게임수 : "+team.getGameNum());
-        holder.txtTeamNumber.setText("팀원수 : "+team.getTeamNum());
+        String TeamNum = ""+team.getTeamNum();
+        holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
 
         Glide.with(mContext).load(team.getEmblemUrl()).into(holder.image_emblem);
 
         holder.btnTeamSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Context context = v.getContext();
-//                Intent intent = new Intent(v.getContext(),/*경기 생성 페이지로 이*/);
-//                Intent intent = new Intent(getApplicationCo동text(), LoginActivity.class);
-//                startActivity(intent);
-//                매칭신청
+//                매칭 생성
+
+                Context context = v.getContext();
+                Intent intent = new Intent(context, MakingGameActivity.class/*경기 생성 페이지로 이*/);
+                intent.putExtra("TeamName",TeamName);
+                intent.putExtra("TeamNum",TeamNum);
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                Activity
+//                startA
+                context.startActivity(intent);
+
+
             }
         });
     }
+
+
+
 
     @Override
     public int getItemCount() {
