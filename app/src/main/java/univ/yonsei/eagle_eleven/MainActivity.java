@@ -70,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,items);
         DatabaseReference GameListDatabase = FirebaseDatabase.getInstance().getReference("GameList");
         GameListDatabase.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                items.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String Data = dataSnapshot.getValue().toString();
                     //android.util.Log.i("Data: ", Data);
@@ -147,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
                 btnReturn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        android.util.Log.i("position: ", String.valueOf(position));
+                        android.util.Log.i("position: ", String.valueOf(items.get(position)));
+                        DatabaseReference removeReference = FirebaseDatabase.getInstance().getReference("GameList").child(items.get(position));
+                        removeReference.removeValue();
                         items.remove(position);// 매칭 성사 시 리스트뷰에서 삭제
                         adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(),"매칭이 성사 됐습니다.",Toast.LENGTH_SHORT).show();
