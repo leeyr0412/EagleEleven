@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //팝업창 시작//
+        //////////////////////////팝업창 시작///////////////////////////
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.8f;
@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                 dlg.show();
             }
         });
-        //팝업창 끝//
+        /////////////////////////팝업창 끝////////////////////////////////
 
     }
 
