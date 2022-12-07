@@ -101,13 +101,13 @@ public class MainActivity extends AppCompatActivity {
         ////////////////////list view 끝 ///////////////////
 
         /////////////////// 매치 생성 ///////////////////////
-        Button btnAdd = findViewById(R.id.btnAdd);
+
         View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
         AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
         dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
         dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
 
-
+        /*
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 dlg.show();
             }
         });
+        */
 
         /////////////////매치 생성 끝 ////////////////////////
         //ListView list = findViewById(R.id.listView1);

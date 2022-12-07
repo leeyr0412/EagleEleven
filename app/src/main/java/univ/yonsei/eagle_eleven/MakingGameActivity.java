@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -63,6 +64,13 @@ public class MakingGameActivity extends AppCompatActivity {
                 hashMap.put("Date",RegisterDate);
                 hashMap.put("UID",uid);
                 databaseReference.child("GameList").child(RegisterDate).setValue(hashMap);
+                Toast.makeText(getApplicationContext(),"매칭이 생성 됐습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnMatchCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
