@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eagle_Eleven">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".MatchingTeamSelectActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".MakingGameActivity"
             android:exported="false" />

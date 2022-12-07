@@ -34,6 +34,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
     TextView txtResult;
     Popup popup;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Eagle Eleven");
+
         /////////////////// list View 시작/////////////////////
         ListView list = findViewById(R.id.listView1);
         final String[] matches = {};
@@ -301,11 +305,8 @@ public class MainActivity extends AppCompatActivity {
         btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-                dlg.setTitle("매칭 알림");
-                AlertDialog.Builder builder = dlg.setMessage(items.get(0));
-                dlg.setPositiveButton("확인", null);
-                dlg.show();
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
             }
         });
         /////////////////////////팝업창 끝////////////////////////////////
