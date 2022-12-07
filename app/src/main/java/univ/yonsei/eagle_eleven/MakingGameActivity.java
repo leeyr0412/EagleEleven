@@ -11,12 +11,18 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TimePicker;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
 public class MakingGameActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;     //회원정보 관련
+    FirebaseUser currentUser;
+    String uid;
+
     Button btnMatchRegister;
     Button btnMatchCancel;
     CalendarView calView;
@@ -27,6 +33,11 @@ public class MakingGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_making_game);
+
+        mAuth = FirebaseAuth.getInstance();     //회원정보 관련 인스턴스 초기화
+        currentUser = mAuth.getCurrentUser();
+        uid = currentUser.getUid();
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -50,6 +61,7 @@ public class MakingGameActivity extends AppCompatActivity {
                 hashMap.put("TeamNumber",TeamNum);
                 hashMap.put("GameHost", TeamName);
                 hashMap.put("Date",RegisterDate);
+                hashMap.put("UID",uid);
                 databaseReference.child("GameList").child(RegisterDate).setValue(hashMap);
             }
         });
