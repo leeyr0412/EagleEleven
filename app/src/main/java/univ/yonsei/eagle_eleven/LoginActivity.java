@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +16,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.core.Tag;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "MyTag";
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener firebaseAuthListener;
     EditText edtLogin, edtPwd;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +72,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
+        /*
+        //////////////////////////////////자동로그인 시작//////////////////////////////////////
+        user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+            @Override
+            public void onComplete(@NonNull Task<GetTokenResult> task) {
+                if(task.isSuccessful()) {
+                    String idToken = task.getResult().getToken();
+                    Log.d(TAG,"아이디 토큰 = " + idToken);
+                    Intent homeMove_intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(homeMove_intent);
+                }
+            }
+        });
+        //////////////////////////////////자동로그인 끝//////////////////////////////////////
+         */
     }
 
     public void loginUser(String email, String password) {
@@ -97,4 +118,6 @@ public class LoginActivity extends AppCompatActivity {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }
     }
+
+
 }
