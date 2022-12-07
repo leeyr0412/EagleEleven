@@ -9,16 +9,18 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <TextView
-            android:layout_weight="5"
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="게임 날짜: "
+            android:gravity="right"
+            android:text="게임 일정: "
             android:textSize="15sp"></TextView>
         <TextView
             android:id="@+id/txtDate"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="xxxx년 xx월 xx일 xx시"></TextView>
     </LinearLayout>
     <LinearLayout
@@ -27,16 +29,18 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <TextView
-            android:layout_weight="5"
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="인원: "
+            android:gravity="right"
+            android:text="상대 팀: "
             android:textSize="15sp"></TextView>
         <TextView
-            android:id="@+id/txtTeamNumber"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:id="@+id/txtYourTeam"
+            android:layout_weight="3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="xx명"></TextView>
     </LinearLayout>
     <LinearLayout
@@ -45,15 +49,57 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <TextView
-            android:layout_weight="5"
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="내 팀: "
+            android:textSize="15sp"></TextView>
+        <TextView
+            android:id="@+id/txtMyTeam"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="xx명"></TextView>
+    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center_horizontal">-->
+<!--        <TextView-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="right"-->
+<!--            android:text="인원: "-->
+<!--            android:textSize="15sp"></TextView>-->
+<!--        <TextView-->
+<!--            android:id="@+id/txtTeamNumber"-->
+<!--            android:layout_weight="3"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="xx명"></TextView>-->
+<!--    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
             android:text="장소: "
             android:textSize="15sp"></TextView>
         <TextView
-            android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="연세대학교 대운동장"></TextView>
     </LinearLayout>
     <Button
