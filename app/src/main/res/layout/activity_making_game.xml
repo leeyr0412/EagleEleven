@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MakingGameActivity">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="경기 날짜"
+        android:gravity="center_horizontal"
+        android:textColor="#0000ff"
+        android:textSize="20sp"></TextView>
+    <CalendarView
+        android:id="@+id/calView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></CalendarView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="경기 시간"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="#0000ff"></TextView>
+    <TimePicker
+        android:id="@+id/tPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        ></TimePicker>
+    <Button
+        android:id="@+id/btnMatchRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매칭 생성하기"
+        ></Button>
+    <Button
+        android:id="@+id/btnMatchCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="취소하기"></Button>
+</LinearLayout>
