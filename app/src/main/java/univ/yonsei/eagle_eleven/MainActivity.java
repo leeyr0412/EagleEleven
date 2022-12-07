@@ -141,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 View matchingPage = View.inflate(MainActivity.this,R.layout.matchingpage,null);
-                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-                TextView txtDate = matchingPage.findViewById(R.id.txtDate);
-                TextView txtTeamNumber = matchingPage.findViewById(R.id.txtTeamNumber);
-                Button btnReturn = matchingPage.findViewById(R.id.btnReturn);
+//                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+//                TextView txtDate = matchingPage.findViewById(R.id.txtDate);
+//                TextView txtTeamNumber = matchingPage.findViewById(R.id.txtTeamNumber);
+                Button btnReturn = matchingPage.findViewById(R.id.btnReturn);  //매칭하기 버튼
 
                 btnReturn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -159,17 +159,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                dlg.setTitle("매치 상세 내용");
                 String content = (String) parent.getAdapter().getItem(position); //리스트 클릭시 해당 내용 불러옴
                 Intent intent = new Intent(getApplicationContext(),MatchingTeamSelectActivity.class);
                 intent.putExtra("ListName",content);
                 startActivity(intent);
 
-                txtDate.setText(content); // 리스트 내용 dlg 텍스트 뷰에 넣음
-                dlg.setView(matchingPage);
-                dlg.setNegativeButton("닫기",null);
-
-                dlg.show();
+//
+//                dlg.setTitle("매치 상세 내용");
+//
+//
+//                txtDate.setText(content); // 리스트 내용 dlg 텍스트 뷰에 넣음
+//                dlg.setView(matchingPage);
+//                dlg.setNegativeButton("닫기",null);
+//
+//                dlg.show();
             }
         });
         /////////////////// list View 끝 /////////////////////
