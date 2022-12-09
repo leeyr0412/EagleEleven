@@ -167,13 +167,6 @@
             android:layout_width="match_parent"
             android:layout_weight="8"
             android:layout_height="match_parent"></ListView>
-
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="매치 생성"
-            />
     </LinearLayout>
 
     <View
