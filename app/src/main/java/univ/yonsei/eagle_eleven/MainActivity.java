@@ -132,6 +132,13 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+//
+//        View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
+//        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+//        dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
+//        dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
+
+
         /////////////////매치 생성 끝 ////////////////////////
         //ListView list = findViewById(R.id.listView1);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
