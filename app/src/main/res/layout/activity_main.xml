@@ -173,29 +173,35 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="4dp"
         android:background="#679467"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#ccddcc">
 
         <Button
             android:id="@+id/btnTeamMake"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_margin="30dp"
-            android:text="@string/btnTeamMake"/>
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="@string/btnTeamMake"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:layout_marginRight="1dp"
+            />
         <Button
             android:id="@+id/btnTeamLoad"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_margin="30dp"
-            android:text="@string/btnTeamLoad"/>
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="@string/btnTeamLoad"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            />
     </LinearLayout>
 </LinearLayout>
