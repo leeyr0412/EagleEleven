@@ -66,7 +66,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Top 5"/>
+            android:text="Top 5"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -161,6 +163,20 @@
         android:layout_weight="7"
         android:orientation="vertical"
         android:background="#ffffff">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="매칭 목록"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#679467"
+            />
 
         <ListView
             android:id="@+id/listView1"
