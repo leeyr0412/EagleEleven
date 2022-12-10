@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HistoryActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;     //회원정보 관련
@@ -37,6 +38,7 @@ public class HistoryActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         uid = currentUser.getUid();
 
+
         /////////////////메인으로 되돌아가기 시작///////////////////
         ImageButton btnHome = findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +51,7 @@ public class HistoryActivity extends AppCompatActivity {
         ////////////////메인으로 되돌아가기 끝/////////////////////
 
 
-        //////////////히스토리 리스트 시작////////////////////
+        /////////////////////////////히스토리 리스트 시작//////////////////////////////////
         ListView listView = findViewById(R.id.HistoryView);
         ArrayList<String> History = new ArrayList<>();
         ArrayList<String> OtherTeam = new ArrayList<>();
@@ -60,11 +62,15 @@ public class HistoryActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 History.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String data = dataSnapshot.getValue().toString();
+                    String oTeam = dataSnapshot.child("otherTeam").getValue().toString();
+                    String mTeam = dataSnapshot.child("myTeam").getValue().toString();
+                    String date = dataSnapshot.child("Date").getValue().toString();
                     //History.add(data.substring(data.indexOf("Date=")+5, data.indexOf("}")));
-                    History.add(data.substring(data.indexOf("otherTeam="), data.lastIndexOf("}")));
+                    //History.add(data.substring(data.indexOf("otherTeam="), data.lastIndexOf("}")));
+                    History.add(date + "\n 나의 팀: " + mTeam +" VS 상대 팀: " + oTeam);
                 }
                 listView.setAdapter(adapter);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -72,16 +78,21 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(HistoryActivity.this);
                 dlg.setTitle("상대한 팀");
-                dlg.setMessage(OtherTeam.toString());
+                dlg.setMessage("나의 팀");
                 dlg.setPositiveButton("확인", null);
                 dlg.show();
             }
         });
+
+         */
+
+        /////////////////////히스토리 리스트 끝/////////////////////////////////
 
     }
 }

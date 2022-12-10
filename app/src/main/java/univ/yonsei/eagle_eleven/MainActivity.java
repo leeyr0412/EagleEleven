@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     EditText dlgTime,dlgDate;
     TextView txtResult;
     Popup popup;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
 
 
     @Override
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Eagle Eleven");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
 
         /////////////////// list View 시작/////////////////////
         ListView list = findViewById(R.id.listView1);
@@ -258,8 +263,11 @@ public class MainActivity extends AppCompatActivity {
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        firebaseAuth.signOut();
+                        finish();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+
                     }
                 });
 

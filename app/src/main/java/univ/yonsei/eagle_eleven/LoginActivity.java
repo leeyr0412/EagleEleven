@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,7 +39,35 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        currentUser = firebaseAuth.getCurrentUser();
+
+        CheckBox autoLogin = findViewById(R.id.autoLogin);
+        if(autoLogin.isChecked() == true){
+            if(firebaseAuth.getCurrentUser() != null){
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        }
+        /*
+
+        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isCheckedj) {
+                if(autoLogin.isChecked() == true){
+                    if(firebaseAuth.getCurrentUser() != null){
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+
+         */
+
+        ////////자동로그인 시작///////
+
+
+        ////////자동로그인 끝///////
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,21 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        /*
-        //////////////////////////////////자동로그인 시작//////////////////////////////////////
-        user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-            @Override
-            public void onComplete(@NonNull Task<GetTokenResult> task) {
-                if(task.isSuccessful()) {
-                    String idToken = task.getResult().getToken();
-                    Log.d(TAG,"아이디 토큰 = " + idToken);
-                    Intent homeMove_intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(homeMove_intent);
-                }
-            }
-        });
-        //////////////////////////////////자동로그인 끝//////////////////////////////////////
-         */
     }
 
     public void loginUser(String email, String password) {
