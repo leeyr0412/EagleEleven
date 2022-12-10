@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,11 +18,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.database.core.Tag;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "MyTag";
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener firebaseAuthListener;
     EditText edtLogin, edtPwd;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,35 @@ public class LoginActivity extends AppCompatActivity {
         edtPwd = findViewById(R.id.edtPwd);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+
+        CheckBox autoLogin = findViewById(R.id.autoLogin);
+        if(autoLogin.isChecked() == true){
+            if(firebaseAuth.getCurrentUser() != null){
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        }
+        /*
+
+        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isCheckedj) {
+                if(autoLogin.isChecked() == true){
+                    if(firebaseAuth.getCurrentUser() != null){
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+
+         */
+
+        ////////자동로그인 시작///////
+
+
+        ////////자동로그인 끝///////
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,4 +133,6 @@ public class LoginActivity extends AppCompatActivity {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }
     }
+
+
 }

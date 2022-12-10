@@ -35,6 +35,16 @@
         android:inputType="textPassword"
         />
 
+    <CheckBox
+        android:id="@+id/autoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자동로그인"
+        android:layout_marginBottom="20dp"
+        android:checked="true"
+        />
+
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"

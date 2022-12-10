@@ -34,6 +34,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,12 +60,19 @@ public class MainActivity extends AppCompatActivity {
     EditText dlgTime,dlgDate;
     TextView txtResult;
     Popup popup;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Eagle Eleven");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+
         /////////////////// list View 시작/////////////////////
         ListView list = findViewById(R.id.listView1);
         final String[] matches = {};
@@ -254,8 +263,11 @@ public class MainActivity extends AppCompatActivity {
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        firebaseAuth.signOut();
+                        finish();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+
                     }
                 });
 
@@ -269,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //팝업창 시작//
+        //////////////////////////팝업창 시작///////////////////////////
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.8f;
@@ -301,14 +313,11 @@ public class MainActivity extends AppCompatActivity {
         btnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-                dlg.setTitle("매칭 알림");
-                AlertDialog.Builder builder = dlg.setMessage(items.get(0));
-                dlg.setPositiveButton("확인", null);
-                dlg.show();
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
             }
         });
-        //팝업창 끝//
+        /////////////////////////팝업창 끝////////////////////////////////
 
     }
 
