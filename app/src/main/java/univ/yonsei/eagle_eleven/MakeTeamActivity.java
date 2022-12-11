@@ -2,6 +2,7 @@ package univ.yonsei.eagle_eleven;
 
 import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -127,7 +128,7 @@ public class MakeTeamActivity extends AppCompatActivity {
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("TeamName", ""+TeamName);
                 hashMap.put("CaptainName", ""+CaptainName);
-                hashMap.put("TeamNumber", teamNum);
+                hashMap.put("TeamNumber", ""+teamNum);
                 hashMap.put("GameNum", 0);
 
 //                순위테이블
@@ -267,9 +268,21 @@ public class MakeTeamActivity extends AppCompatActivity {
                 finish();
             }
             else if(resultCode==RESULT_OK){
-                Intent go = getIntent();
-                go.putExtra("TeamName",TeamName);
-                startActivity(go);
+//                Intent go = getIntent();
+//                go.putExtra("TeamName",TeamName);
+//                startActivity(go);
+//
+//                Context context = v.getContext();
+                Intent intent = new Intent(this, MakingGameActivity.class/*경기 생성 페이지로 이*/);
+                intent.putExtra("TeamName",TeamName);
+                intent.putExtra("TeamNum",teamNum);
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                Activity
+//                startA
+                startActivity(intent);
+
+
+
                 finish();
             }
         }

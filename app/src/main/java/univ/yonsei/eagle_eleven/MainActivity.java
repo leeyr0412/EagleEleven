@@ -110,37 +110,43 @@ public class MainActivity extends AppCompatActivity {
         ////////////////////list view 끝 ///////////////////
 
         /////////////////// 매치 생성 ///////////////////////
+//        Button btnAdd = findViewById(R.id.btnAdd);
+//        View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
+//        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+//        dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
+//        dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
+//
+//
+//        btnAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+//                dlg.setTitle("매칭 생성하기");
+//                dlg.setView(makeMatchingPage);
+//
+//                dlg.setPositiveButton("등록하기", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        String date = dlgDate.getText().toString();
+//                        String Time = dlgTime.getText().toString();
+//
+//                        android.util.Log.i("date: ",date + " "+Time);
+//                        String[] TotalDate = date.split("/");
+//                        items.add(TotalDate[0] + "년" +TotalDate[1]+ "월" + TotalDate[2] +"일 " + Time + "시");
+//                    }
+//                });
+//                dlg.setNegativeButton("취소",null);
+//
+//                dlg.show();
+//            }
+//        });
 
-        View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
-        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-        dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
-        dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
+//
+//        View makeMatchingPage = View.inflate(MainActivity.this,R.layout.make_matching_page,null);
+//        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+//        dlgTime = makeMatchingPage.findViewById(R.id.dlgTime);
+//        dlgDate = makeMatchingPage.findViewById(R.id.dlgDate);
 
-        /*
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-                dlg.setTitle("매칭 생성하기");
-                dlg.setView(makeMatchingPage);
-
-                dlg.setPositiveButton("등록하기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String date = dlgDate.getText().toString();
-                        String Time = dlgTime.getText().toString();
-
-                        android.util.Log.i("date: ",date + " "+Time);
-                        String[] TotalDate = date.split("/");
-                        items.add(TotalDate[0] + "년" +TotalDate[1]+ "월" + TotalDate[2] +"일 " + Time + "시");
-                    }
-                });
-                dlg.setNegativeButton("취소",null);
-
-                dlg.show();
-            }
-        });
-        */
 
         /////////////////매치 생성 끝 ////////////////////////
         //ListView list = findViewById(R.id.listView1);

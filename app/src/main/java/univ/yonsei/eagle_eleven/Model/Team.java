@@ -5,14 +5,14 @@ public class Team {
     private String CaptainName;
     private int GameNum;
     private String EmblemUrl;
-    private int TeamNum;
+    private String TeamNumber;
 
-    public Team(String teamName, String captainName, int gameNum, String EmblemUrl, int teamNum) {
+    public Team(String teamName, String captainName,  String EmblemUrl, String teamNumber, int GameNum) {
         this.TeamName = teamName;
         this.CaptainName = captainName;
-        this.GameNum = gameNum;
+        this.GameNum = GameNum;
         this.EmblemUrl = EmblemUrl;
-        this.TeamNum = teamNum;
+        this.TeamNumber = teamNumber;
     }
 
     public Team() {
@@ -50,11 +50,11 @@ public class Team {
         EmblemUrl = EmblemUrl;
     }
 
-    public int getTeamNum() {
-        return TeamNum;
+    public String getTeamNum() {
+        return TeamNumber;
     }
 
-    public void setTeamNum(int teamNum) {
-        TeamNum = teamNum;
+    public void setTeamNum(String teamNumber) {
+        TeamNumber = teamNumber;
     }
 }

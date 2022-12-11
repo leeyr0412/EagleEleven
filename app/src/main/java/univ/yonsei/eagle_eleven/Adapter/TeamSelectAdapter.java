@@ -75,7 +75,7 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
         holder.txtTeamCaptain.setText("주장 : "+team.getCaptainName());
         holder.txtGameNum.setText("게임수 : "+team.getGameNum());
         String TeamNum = ""+team.getTeamNum();
-        holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
+        //holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
         holder.btnTeamSelect.setText("선택");
 
         Glide.with(mContext).load(team.getEmblemUrl()).into(holder.image_emblem);
@@ -113,7 +113,6 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
 
 
                 Button btnReturn = matchingPage.findViewById(R.id.btnReturn);  //매칭하기 버튼
-
                 btnReturn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -132,13 +131,68 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 final String yourID = "" +snapshot.getValue(String.class);
-//                        yourID = ""+s;
+//                                히스토리테이블 등록
                                 databaseReference.child("History").child(yourID).child(GameData).setValue(YourHistory);
+
+//                                랭킹 테이블 게임 수 업 시켜야함(상대 유저)
+                                databaseReference.child("Ranking").child(yourTeam).child("GameNum").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int value = (int)snapshot.getValue(Integer.class);//저장된 값을 숫자로 받아오고
+                                        value +=1;//숫자를 1 증가시켜서
+                                        databaseReference.child("Ranking").child(yourTeam).child("GameNum").setValue(value);
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+//                                팀 테이블 게임 수 업 시키기(상대 유저)
+                                databaseReference.child("TEAM").child(yourID).child(yourTeam).child("GameNum").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        int value = (int)snapshot.getValue(Integer.class);//저장된 값을 숫자로 받아오고
+                                        value +=1;//숫자를 1 증가시켜서
+                                        databaseReference.child("TEAM").child(yourID).child(yourTeam).child("GameNum").setValue(value);
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                             }
                         });
+//                        랭킹 테이블 게임 수 업 시켜야함(로그인 한 유저)
+                        databaseReference.child("Ranking").child(TeamName).child("GameNum").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                int value = (int)snapshot.getValue(Integer.class);//저장된 값을 숫자로 받아오고
+                                value +=1;//숫자를 1 증가시켜서
+                                databaseReference.child("Ranking").child(TeamName).child("GameNum").setValue(value);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+
+//                        팀 테이블 게임 수 업 시키기(로그인 한 유저)
+                        databaseReference.child("TEAM").child(uid).child(TeamName).child("GameNum").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                int value = (int)snapshot.getValue(Integer.class);//저장된 값을 숫자로 받아오고
+                                value +=1;//숫자를 1 증가시켜서
+                                databaseReference.child("TEAM").child(uid).child(TeamName).child("GameNum").setValue(value);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
 
 //                      게임 리스트 디비 삭제하기
                         DatabaseReference removeReference = FirebaseDatabase.getInstance().getReference("GameList").child(GameData);
@@ -203,7 +257,7 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
             image_emblem = itemView.findViewById(R.id.image_emblem);
             teamname = itemView.findViewById(R.id.teamname);
             txtTeamCaptain = itemView.findViewById(R.id.txtTeamCaptain);
-            txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
+            //txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
             txtGameNum = itemView.findViewById(R.id.txtGameNum);
             btnTeamSelect = itemView.findViewById(R.id.btnTeamSelect);
 
