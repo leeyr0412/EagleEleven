@@ -75,7 +75,7 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
         holder.txtTeamCaptain.setText("주장 : "+team.getCaptainName());
         holder.txtGameNum.setText("게임수 : "+team.getGameNum());
         String TeamNum = ""+team.getTeamNum();
-        holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
+        //holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
         holder.btnTeamSelect.setText("선택");
 
         Glide.with(mContext).load(team.getEmblemUrl()).into(holder.image_emblem);
@@ -198,14 +198,6 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
                         DatabaseReference removeReference = FirebaseDatabase.getInstance().getReference("GameList").child(GameData);
                         removeReference.removeValue();
 
-
-
-
-
-
-
-
-
                         ((Activity)mContext).finish();
 //                        Context context = v.getContext();
 //                        Intent intent = new Intent(context, MakingGameActivity.class/*경기 생성 페이지로 이*/);
@@ -265,7 +257,7 @@ public class TeamSelectAdapter extends RecyclerView.Adapter<TeamSelectAdapter.Vi
             image_emblem = itemView.findViewById(R.id.image_emblem);
             teamname = itemView.findViewById(R.id.teamname);
             txtTeamCaptain = itemView.findViewById(R.id.txtTeamCaptain);
-            txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
+            //txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
             txtGameNum = itemView.findViewById(R.id.txtGameNum);
             btnTeamSelect = itemView.findViewById(R.id.btnTeamSelect);
 

@@ -81,8 +81,8 @@ public class MatchingTeamSelectActivity extends AppCompatActivity {
         getTeamlist();
 
 //                공간대여시스템 연결해주기
-//                Intent InternetIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://space.yonsei.ac.kr/index.php?lang=k"));
-//                startActivity(InternetIntent);
+                Intent InternetIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://space.yonsei.ac.kr/index.php?lang=k"));
+                startActivity(InternetIntent);
 //                finish();
     }
 

@@ -46,8 +46,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
         holder.teamname.setText(TeamName);
         holder.txtTeamCaptain.setText("주장 : "+team.getCaptainName());
         holder.txtGameNum.setText("게임수 : "+team.getGameNum());
-        String TeamNum = ""+team.getTeamNum();
-        holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
+        //String TeamNum = ""+team.getTeamNum();
+        //holder.txtTeamNumber.setText("팀원수 : "+TeamNum);
 
         Glide.with(mContext).load(team.getEmblemUrl()).into(holder.image_emblem);
 
@@ -59,7 +59,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, MakingGameActivity.class/*경기 생성 페이지로 이*/);
                 intent.putExtra("TeamName",TeamName);
-                intent.putExtra("TeamNum",TeamNum);
+                //intent.putExtra("TeamNum",TeamNum);
 //                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
 //                Activity
 //                startA
@@ -93,7 +93,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
             image_emblem = itemView.findViewById(R.id.image_emblem);
             teamname = itemView.findViewById(R.id.teamname);
             txtTeamCaptain = itemView.findViewById(R.id.txtTeamCaptain);
-            txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
+            //txtTeamNumber = itemView.findViewById(R.id.txtTeamNumber);
             txtGameNum = itemView.findViewById(R.id.txtGameNum);
             btnTeamSelect = itemView.findViewById(R.id.btnTeamSelect);
 
